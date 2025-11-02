@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nuances & Nœuds</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #fdf6f0;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+  }
+  header {
+    position: sticky;
+    top: 0;
+    background-color: #ffb6b9;
+    padding: 10px 0;
+    text-align: center;
+    z-index: 100;
+  }
+  header img.logo {
+    height: 80px;
+    vertical-align: middle;
+  }
+  header h1 {
+    display: inline-block;
+    margin-left: 15px;
+    font-size: 2em;
+    vertical-align: middle;
+    color: #fff;
+  }
+  nav {
+    margin-top: 10px;
+  }
+  nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 1.1em;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: rgba(0,0,0,0.2);
+    transition: background-color 0.3s;
+  }
+  nav a:hover {
+    background-color: rgba(0,0,0,0.5);
+  }
+  section {
+    padding: 40px 20px;
+  }
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  .product {
+    background-color: #fff0f5;
+    border-radius: 10px;
+    padding: 15px;
+    width: 220px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+  .product img {
+    width: 100%;
+    border-radius: 10px;
+  }
+  .price {
+    font-weight: bold;
+    color: #e63946;
+    margin-top: 10px;
+  }
+  button {
+    margin-top: 10px;
+    padding: 8px 12px;
+    border: none;
+    background-color: #ff6f61;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  button:hover { background-color: #e63946; }
+  #cart {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #ffb6b9;
+    padding: 15px;
+    border-radius: 10px;
+    min-width: 200px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  }
+  #cart h2 { margin-top: 0; }
+  #cart-items { list-style: none; padding: 0; margin: 10px 0; max-height: 200px; overflow-y: auto; }
+  .card {
+    background-color: #fff0f5;
+    border-radius: 15px;
+    padding: 30px;
+    max-width: 600px;
+    margin: 20px auto;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    text-align: left;
+  }
+  .card p {
+    line-height: 1.6em;
+  }
+  .card a {
+    color: #e63946;
+    text-decoration: none;
+  }
+  .card a:hover {
+    color: #ff6f61;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <img class="logo" src="https://logo-variant.algo.design.vpsvc.com/6907678224a8c295e82200dd?sign=baa62b15d27fc7c8abee8b50e93fd0830a0dfaeb2404cf88dd732333c8e66897&backgroundMode=TRANSPARENT&type=PNG&width=400&height=400" alt="Logo Nuances & Nœuds">
+  <h1>Nuances & Nœuds</h1>
+  <nav>
+    <a href="#produits">Produits</a>
+    <a href="#apropos">À propos</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section id="produits">
+  <h2>Nos Produits</h2>
+  <div class="products">
+    <!-- Exemple produit -->
+    <div class="product">
+      <img src="https://i.pinimg.com/736x/53/b3/5a/53b35a72856f6fc1d3cb15ad6b8caef7.jpg" alt="Peluche Miffy">
+      <h3>Peluche Miffy</h3>
+      <p class="price">23€</p>
+      <label>Couleur :</label>
+      <select id="color-miffy">
+        <option value="blanc">Blanc</option>
+        <option value="rose">Rose</option>
+        <option value="gris">Gris</option>
+      </select>
+      <label>Parfum :</label>
+      <select id="scent-miffy">
+        <option value="non">Non</option>
+        <option value="oui">Oui</option>
+      </select>
+      <button onclick="addToCart('Peluche Miffy', 23, document.getElementById('color-miffy').value, document.getElementById('scent-miffy').value)">Ajouter au panier</button>
+    </div>
+
+    <!-- Produit sur commande -->
+    <div class="product">
+      <img src="https://i.pinimg.com/736x/78/81/36/7881368095066736.jpg" alt="Produit sur commande">
+      <h3>Création sur commande</h3>
+      <p class="price">Prix variable</p>
+      <label>Couleur :</label>
+      <select id="color-custom">
+        <option value="blanc">Blanc</option>
+        <option value="rose">Rose</option>
+        <option value="gris">Gris</option>
+        <option value="autre">Autre (à préciser)</option>
+      </select>
+      <label>Parfum :</label>
+      <select id="scent-custom">
+        <option value="non">Non</option>
+        <option value="oui">Oui</option>
+      </select>
+      <button onclick="addToCart('Création sur commande', 0, document.getElementById('color-custom').value, document.getElementById('scent-custom').value)">Ajouter au panier</button>
+    </div>
+  </div>
+</section>
+
+<div id="cart">
+  <h2>Panier</h2>
+  <ul id="cart-items"></ul>
+  <p>Total: <span id="cart-total">0</span></p>
+</div>
+
+<section id="apropos">
+  <h2>À propos de moi</h2>
+  <div class="card">
+    <p>Je m’appelle Salomé, et je suis une jeune créatrice qui pratique le crochet avec passion.</p>
+    <p>Avec Nuances & Noeuds, je transforme chaque fil et chaque nœud en petites créations, pensées pour apporter douceur, élégance et poésie à votre quotidien.</p>
+    <p>Chaque pièce est réalisée avec soin, comme un petit détail qui rend la vie plus belle.</p>
+  </div>
+</section>
+
+<section id="contact">
+  <h2>Contact</h2>
+  <div class="card">
+    <p>Email : <a href="mailto:manou.aumont@orange.fr">manou.aumont@orange.fr</a></p>
+    <p>Pinterest : <a href="https://www.pinterest.fr/The_Blue_Moonlight/" target="_blank">The_Blue_Moonlight</a></p>
+  </div>
+</section>
+
+<script>
+let cart = [];
+let total = 0;
+
+function addToCart(name, price, color, scent) {
+  cart.push({name:name, price:price, color:color, scent:scent});
+  if(price !== 0) total += price;
+  renderCart();
+}
+
+function renderCart() {
+  const cartItems = document.getElementById('cart-items');
+  cartItems.innerHTML = '';
+  cart.forEach(item=>{
+    const priceDisplay = item.price===0?'Prix variable':'€'+item.price;
+    const li = document.createElement('li');
+    li.textContent = item.name+' ('+item.color+', Parfum: '+item.scent+') - '+priceDisplay;
+    cartItems.appendChild(li);
+  });
+  const totalVariable = cart.some(item=>item.price===0)?'Prix variable':total;
+  document.getElementById('cart-total').textContent = totalVariable;
+}
+</script>
+
+</body>
+</html>
